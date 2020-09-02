@@ -10,4 +10,4 @@ git push -u origin master
                 
 git remote add origin git@github.com:yassataiseer/inkfactory.git
 git branch -M master
-git push -u origin master
+git push -u origin master# inkfactory
