@@ -6,6 +6,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 import os
 from query import data_answer
+from user_fetcher import static
 app = Flask(__name__)
 
 
@@ -21,9 +22,16 @@ def check():
     variable = list(variable)
     boolean = data_answer.data(variable)
     if boolean == True:
-        return render_template("users.html")
+        user_data = static.data()
+        return render_template("users.html",user_data=user_data)
     else:
         return "invalid creds"
+
+
+@app.route("/users")
+def users():
+    user_data = static.data()
+    return render_template("users.html", user_data=user_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
