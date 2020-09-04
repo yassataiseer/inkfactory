@@ -1,6 +1,6 @@
 
 import sqlite3
-
+### Do not run the code as it will create a new user code was only meant to write into a database
 conn = sqlite3.connect('employees.db')
 c = conn.cursor()
 
