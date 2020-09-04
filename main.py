@@ -7,6 +7,7 @@ from flask_migrate import Migrate, MigrateCommand
 import os
 from query import data_answer
 from user_fetcher import static
+from cli_fetcher import sheets
 app = Flask(__name__)
 
 
@@ -20,7 +21,7 @@ def check():
     password = request.form['pswrd']
     variable = email,password
     variable = list(variable)
-    boolean = data_answer.data(variable)
+    boolean = data_answer.data(variable)#calls query.py class
     if boolean == True:
         user_data = static.data()
         return render_template("users.html",user_data=user_data)
@@ -30,8 +31,13 @@ def check():
 
 @app.route("/users")
 def users():
-    user_data = static.data()
+    user_data = static.data()#calls user_fetch.py class
     return render_template("users.html", user_data=user_data)
+
+@app.route("/clients")
+def clients():
+    user_data = sheets.data()
+    return render_template("clients.html", user_data=user_data)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -57,11 +57,12 @@ ul {
 
 <table>
   <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
+    <th>Name</th>
+    <th>Address1</th>
+    <th>Address2</th>
+    <th>Postalcode</th>
     <th>Email</th>
-    <th>Password</th>
-    <th>Date Added</th>
+    <th>Phone</th>
     <th>Date Updated</th>
   </tr>
   {% for user in user_data%}
@@ -72,6 +73,7 @@ ul {
     <td>{{user[3]}}</td>
     <td>{{user[4]}}</td>
     <td>{{user[5]}}</td>
+    <td>{{user[6]}}</td>
 
   </tr>
 {%endfor%}
