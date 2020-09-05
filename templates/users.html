@@ -54,6 +54,7 @@ ul {
           
       </ul>
 <h2>Internal Users List</h2>
+<form  name="change" action="/change" method="POST" class="modal-content">
 
 <table>
   <tr>
@@ -68,14 +69,15 @@ ul {
   <tr>
     <td>{{user[0]}}</td>
     <td>{{user[1]}}</td>
-    <td>{{user[2]}}</td>
+    <td >{{user[2]}}</td>
     <td>{{user[3]}}</td>
     <td>{{user[4]}}</td>
-    <td>{{user[5]}}</td>
+    <td>{{user[5]}}<h3><button name ="email" value ="{{user[2]}}" type="submit" class="signupbtn"> Edit</button></td>
 
   </tr>
 {%endfor%}
 </table>
+</form>
 
 </body>
 </html>

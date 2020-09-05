@@ -17,6 +17,8 @@ def index():
 
 @app.route("/logger",methods = ["POST"])
 def check():
+    creds = request.form.get("name")
+    print(creds)
     email = request.form['emailer']
     password = request.form['pswrd']
     variable = email,password
@@ -38,6 +40,14 @@ def users():
 def clients():
     user_data = sheets.data()
     return render_template("clients.html", user_data=user_data)
+
+@app.route("/change",methods = ['POST'])
+def change():
+    print("Hello")
+    creds = request.form.get("email")
+    print("test")
+    #print(creds)
+    return render_template("change_user.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
