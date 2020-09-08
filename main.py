@@ -8,6 +8,7 @@ import os
 from query import data_answer
 from user_fetcher import static
 from cli_fetcher import sheets
+from generate import gather
 app = Flask(__name__)
 
 
@@ -45,9 +46,14 @@ def clients():
 def change():
     print("Hello")
     creds = request.form.get("email")
-    print("test")
     #print(creds)
-    return render_template("change_user.html")
+    boolean = gather.data(creds)#calls on generate.py
+    #print(boolean)
+    passable = len(boolean)
+    if passable>0:
+        return render_template("change_user.html",user=boolean)
+    else:
+        return render_template("login.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
