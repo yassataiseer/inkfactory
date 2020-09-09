@@ -42,19 +42,19 @@ input[type=submit]:hover {
 <h3>Update Form</h3>
 
 <div class="container">
-  <form action="/">
+  <form name = "rewrite" action="/rewrite" methods = 'POST' >
     <label for="fname">First Name</label>
     
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    <input type="text" id="fname" name="firstname" placeholder={{user[0]}}>
 
     <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <input type="text" id="lname" name="lastname" placeholder={{user[0]}}>
 
     <label for="lname">Email</label>
-    <input type="text" id="mail" name="mail" placeholder="Your Email">
+    <input type="text" id="mail" name="mail" placeholder={{user[0]}}>
 
     <label for="lname">Password</label>
-    <input type="text" id="Password" name="password" placeholder="Your password">
+    <input type="text" id="Password" name="password" placeholder={{user[0]}}>
     
   <label for="birthday">Date:</label>
   <input type="date" id="date" name="date">

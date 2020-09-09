@@ -51,9 +51,17 @@ def change():
     #print(boolean)
     passable = len(boolean)
     if passable>0:
+        boolean = boolean[0]
         return render_template("change_user.html",user=boolean)
     else:
         return render_template("login.html")
+
+@app.route("/rewrite",methods = ['POST'])
+def rewrite():
+    a = request.form['firstname']
+    print(a)
+    return render_template("users.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
