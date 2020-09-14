@@ -1,0 +1,2 @@
+Notes file for future refernce 
+pip install -r requirements.txt
