@@ -19,7 +19,7 @@ def index():
 @app.route("/logger",methods = ["POST"])
 def check():
     creds = request.form.get("name")
-    print(creds)
+    #print(creds)
     email = request.form['emailer']
     password = request.form['pswrd']
     variable = email,password
@@ -27,7 +27,10 @@ def check():
     boolean = data_answer.data(variable)#calls query.py class
     if boolean == True:
         user_data = static.data()
-        return render_template("users.html",user_data=user_data)
+        if email=="taiseer142@hotmail.com":
+            return render_template("users.html",user_data=user_data)
+        else:
+            return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"]])
     else:
         return "invalid creds"
 
@@ -44,8 +47,10 @@ def clients():
 
 @app.route("/change",methods = ['POST'])
 def change():
-    print("Hello")
+    #print("Hello")
     creds = request.form.get("email")
+    if creds!="taiseer142@hotmail.com":
+        return"<h1> You don't have access to this only the master does :(</h1>"
     #print(creds)
     boolean = gather.data(creds)#calls on generate.py
     #print(boolean)
@@ -59,7 +64,7 @@ def change():
 @app.route("/rewrite",methods = ['POST'])
 def rewrite():
     a = request.form['firstname']
-    print(a)
+    #print(a)
     return render_template("users.html")
 
 

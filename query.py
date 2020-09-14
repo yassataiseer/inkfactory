@@ -22,15 +22,17 @@ class data_answer:
             print(rows[3])
             if users[0]==rows[2] and users[1]==rows[3]:
                 return True
+
             else:
-                return False
+                pass
         return( send_data)
 
             
-
 '''
-email = "taiseer142@hotmail.com"
-password = "56Operahouse"
-variable = email,password
-print(list(variable))'''
 
+email = "adil@theinkfactory.ca"
+password = "1234567890"
+variable = email,password
+#print(list(variable))
+print(data_answer.data(variable))
+'''
