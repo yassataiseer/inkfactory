@@ -9,12 +9,16 @@ from query import data_answer
 from user_fetcher import static
 from cli_fetcher import sheets
 from generate import gather
+import random
+
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
     return render_template("login.html")
+
+
 
 @app.route("/logger",methods = ["POST"])
 def check():
@@ -30,25 +34,36 @@ def check():
         if email=="taiseer142@hotmail.com":
             return render_template("users.html",user_data=user_data)
         else:
-            return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"]])
+            return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["#"]])
     else:
         return "invalid creds"
+
+
 
 
 @app.route("/users")
 def users():
     user_data = static.data()#calls user_fetch.py class
+    #print(user_data)
+    creds = request.form.get("email")
+    print("creds",creds)
     return render_template("users.html", user_data=user_data)
+
 
 @app.route("/clients")
 def clients():
     user_data = sheets.data()
+    a = request.form.get('email')
+    print(a)
     return render_template("clients.html", user_data=user_data)
+
+
 
 @app.route("/change",methods = ['POST'])
 def change():
     #print("Hello")
     creds = request.form.get("email")
+    print(creds)
     if creds!="taiseer142@hotmail.com":
         return"<h1> You don't have access to this only the master does :(</h1>"
     #print(creds)
@@ -61,10 +76,12 @@ def change():
     else:
         return render_template("login.html")
 
+
+
+
 @app.route("/rewrite",methods = ['POST'])
 def rewrite():
     a = request.form['firstname']
-    #print(a)
     return render_template("users.html")
 
 
