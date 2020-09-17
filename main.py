@@ -12,6 +12,7 @@ from generate import gather
 import random
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'prettyprinted'
 
 
 @app.route("/")
@@ -25,6 +26,7 @@ def check():
     creds = request.form.get("name")
     #print(creds)
     email = request.form['emailer']
+    session['email'] = email
     password = request.form['pswrd']
     variable = email,password
     variable = list(variable)
@@ -43,11 +45,14 @@ def check():
 
 @app.route("/users")
 def users():
-    user_data = static.data()#calls user_fetch.py class
-    #print(user_data)
-    creds = request.form.get("email")
-    print("creds",creds)
-    return render_template("users.html", user_data=user_data)
+    if session['email'] == 'taiseer142@hotmail.com':
+        user_data = static.data()#calls user_fetch.py class
+        #print(user_data)
+        creds = request.form.get("email")
+        print("creds",creds)
+        return render_template("users.html", user_data=user_data)
+    else: 
+        return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["#"]])
 
 
 @app.route("/clients")
@@ -64,7 +69,7 @@ def change():
     #print("Hello")
     creds = request.form.get("email")
     print(creds)
-    if creds!="taiseer142@hotmail.com":
+    if session['email'] !="taiseer142@hotmail.com":
         return"<h1> You don't have access to this only the master does :(</h1>"
     #print(creds)
     boolean = gather.data(creds)#calls on generate.py
@@ -83,6 +88,18 @@ def change():
 def rewrite():
     a = request.form['firstname']
     return render_template("users.html")
+
+
+@app.route("/back")
+def back():
+    if session['email'] == 'taiseer142@hotmail.com':
+        user_data = static.data()#calls user_fetch.py class
+        #print(user_data)
+        creds = request.form.get("email")
+        print("creds",creds)
+        return render_template("users.html", user_data=user_data)
+    else: 
+        return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["#"]])
 
 
 if __name__ == '__main__':
