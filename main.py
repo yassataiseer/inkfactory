@@ -10,9 +10,10 @@ from user_fetcher import static
 from cli_fetcher import sheets
 from generate import gather
 import random
+from email_checker import find
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'prettyprinted'
+app.config['SECRET_KEY'] = 'abc'
 
 
 @app.route("/")
@@ -69,11 +70,10 @@ def change():
     #print("Hello")
     creds = request.form.get("email")
     print(creds)
-    if session['email'] !="taiseer142@hotmail.com":
+    captcha = find.search(session['email'])
+    if  captcha!=True:
         return"<h1> You don't have access to this only the master does :(</h1>"
-    #print(creds)
     boolean = gather.data(creds)#calls on generate.py
-    #print(boolean)
     passable = len(boolean)
     if passable>0:
         boolean = boolean[0]
@@ -84,19 +84,33 @@ def change():
 
 
 
-@app.route("/rewrite",methods = ['POST'])
+@app.route("/rewrite",methods = ['GET'])
 def rewrite():
-    a = request.form['firstname']
-    return render_template("users.html")
+    if request.method=="GET":
+        print("kys")
+        first_name = request.args.get('firstname',None)
+        print(first_name)
+
+        last_name = request.args.get('lastname')
+        email = request.args.get("email")
+        password = request.args.get('password')
+        newdate=request.args.get('date')
+        print(last_name)
+        print(email)
+        print(password)
+        print(newdate)
+
+        return render_template("users.html")
 
 
-@app.route("/back")
+@app.route("/back" ,methods = ['GET','POST'])
 def back():
-    if session['email'] == 'taiseer142@hotmail.com':
+    captcha = find.search(session['email'])#calls email_checker.py
+    if captcha == True:
+
         user_data = static.data()#calls user_fetch.py class
         #print(user_data)
-        creds = request.form.get("email")
-        print("creds",creds)
+        
         return render_template("users.html", user_data=user_data)
     else: 
         return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["#"]])
