@@ -92,8 +92,8 @@ def rewrite():
         print(first_name)
 
         last_name = request.args.get('lastname')
-        email = request.args.get("email")
-        password = request.args.get('password')
+        email = request.args.get("mail")
+        password = request.form.get('password')
         newdate=request.args.get('date')
         print(last_name)
         print(email)
