@@ -6,11 +6,12 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 import os
 from query import data_answer
-from user_fetcher import static
-from cli_fetcher import sheets
-from generate import gather
+from user_fetcher import static#grabs data of all users to be displayed on  users.html
+from cli_fetcher import sheets#grabs client data from clients.db
+from generate import gather#gathers employees data
 import random
-from email_checker import find
+from email_checker import find#checks if they email is Admins
+from db_rewriter import table_edit#rewrites employees data
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
@@ -18,9 +19,13 @@ app.config['SECRET_KEY'] = 'abc'
 
 @app.route("/")
 def index():
+    session['email'] = None
     return render_template("login.html")
 
 
+@app.route("/sign_out")
+def sign_out():
+    return render_template("login.html")
 
 @app.route("/logger",methods = ["POST"])
 def check():
@@ -87,30 +92,23 @@ def change():
 @app.route("/rewrite",methods = ['GET'])
 def rewrite():
     if request.method=="GET":
-        print("kys")
         first_name = request.args.get('firstname',None)
         print(first_name)
-
         last_name = request.args.get('lastname')
         email = request.args.get("mail")
-        password = request.form.get('password')
+        password = request.args.get('password')
         newdate=request.args.get('date')
-        print(last_name)
-        print(email)
-        print(password)
-        print(newdate)
-
-        return render_template("users.html")
+        table_edit.write(first_name,last_name,email,password,newdate)
+        user_data = static.data()#calls user_fetch.py class
+        return render_template("users.html", user_data=user_data)
 
 
 @app.route("/back" ,methods = ['GET','POST'])
 def back():
     captcha = find.search(session['email'])#calls email_checker.py
     if captcha == True:
-
         user_data = static.data()#calls user_fetch.py class
         #print(user_data)
-        
         return render_template("users.html", user_data=user_data)
     else: 
         return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["#"]])

@@ -1,7 +1,7 @@
 
 import sqlite3
 
-conn = sqlite3.connect('employees.db')
+conn = sqlite3.connect('employees.db',  check_same_thread=False)
 c = conn.cursor()
 
 
@@ -13,24 +13,20 @@ class table_edit:
         for row in a:
             print (row[0])
             if row[0]==email:
-                print("90% DONE")
-                data = firstname,email
-                c.execute('UPDATE stuffToPlot SET firstname = ?   WHERE Email = ?;',data)
-                print("100% DONE")
+                fname = firstname,email
+                lname = lastname,email
+                password_edit=password,email
+                date_changer = newdate,email
+                c.execute('UPDATE stuffToPlot SET firstname = ?  WHERE Email = ?;',fname)
+                c.execute('UPDATE stuffToPlot SET lastname = ?  WHERE Email = ?;',lname)
+                c.execute('UPDATE stuffToPlot SET password = ?  WHERE Email = ?;',password_edit)
+                c.execute('UPDATE stuffToPlot SET newdate = ?  WHERE Email = ?;',date_changer)
                 conn.commit()
-                c.close()
-                conn.close()
+                #c.close()
+                #conn.close()
 
 
-            #c.execute("INSERT INTO stuffToPlot VALUES('firstname','lastname','Email','password','newdate') values(?,?,?,?,?",(self,firstname,lastname,email,password,newdate(firstname,lastname,email,password,newdate)
 
-#           
-# return True
-#        else:
-#            pas
-    
-
-
-print(table_edit.write("Taiseerrrr","Mohammeddddd","taiseer142@hotmail.com","123abc","20-09-2020"))
+#print(table_edit.write("Taiseer","Mohammed","taiseer142@hotmail.com","56Operahouse","20-09-2020"))
 
 
