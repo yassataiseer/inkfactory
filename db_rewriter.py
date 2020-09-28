@@ -11,7 +11,6 @@ class table_edit:
         c.execute("SELECT Email FROM stuffToPlot")
         a = c.fetchall()
         for row in a:
-            print (row[0])
             if row[0]==email:
                 fname = firstname,email
                 lname = lastname,email
@@ -24,6 +23,7 @@ class table_edit:
                 conn.commit()
                 #c.close()
                 #conn.close()
+        
 
 
 

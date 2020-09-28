@@ -47,12 +47,11 @@ ul {
 </style>
 </head>
 <body>
-    <ul>
-        <li><a href="/users" >View Users </a></li>
-        <li><a href="/clients">Clients</a></li>
-        <li><a href="/sign_out"></a>Sign Out </li>
-
-      </ul>
+  <ul>
+    <li><a href="/users" >View Users </a></li>
+    <li><a href="/clients">Clients</a></li>
+      <li><a href="/sign_out">Sign Out</a></li>
+  </ul>
 <h2>Internal Users List</h2>
 
 <table>
@@ -63,7 +62,6 @@ ul {
     <th>Postalcode</th>
     <th>Email</th>
     <th>Phone</th>
-    <th>Date Updated</th>
   </tr>
   {% for user in user_data%}
   <tr>
@@ -72,8 +70,8 @@ ul {
     <td>{{user[2]}}</td>
     <td>{{user[3]}}</td>
     <td>{{user[4]}}</td>
-    <td>{{user[5]}}</td>
-    <td>{{user[6]}}</td>
+    <td>{{user[5]}}</td><button name ="email" value ="{{user[2]}}" type="submit" class="signupbtn"> Edit</button></td>
+
 
   </tr>
 {%endfor%}
