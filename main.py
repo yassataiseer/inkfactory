@@ -8,10 +8,12 @@ import os
 from query import data_answer
 from user_fetcher import static#grabs data of all users to be displayed on  users.html
 from cli_fetcher import sheets#grabs client data from clients.db
-from generate import gather#gathers employees data
+from generate import gather#gathers specific employees data
 import random
 from email_checker import find#checks if they email is Admins
 from db_rewriter import table_edit#rewrites employees data
+
+from clients_data_finder import search# gathers the data of the specific client
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
@@ -74,7 +76,7 @@ def clients():
 def change():
     #print("Hello")
     creds = request.form.get("email")
-    print(creds)
+    print("EMAIL",creds)
     captcha = find.search(session['email'])
     if  captcha!=True:
         return"<h1> You don't have access to this only the master does :(</h1>"
@@ -112,6 +114,18 @@ def back():
         return render_template("users.html", user_data=user_data)
     else: 
         return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["#"]])
+
+@app.route("/change_clients",methods = ['POST'] )
+def change_clients():
+    if request.method=="POST":
+        name = request.form.get("edit")
+        #print(name)
+        user_data = search.data(name)
+        for user in user_data:
+            print(user[0])
+        return render_template("change_client.html",user_data = user_data)
+    else:
+        return"error"
 
 
 if __name__ == '__main__':

@@ -53,6 +53,7 @@ ul {
       <li><a href="/sign_out">Sign Out</a></li>
   </ul>
 <h2>Internal Users List</h2>
+<form  name="change_clients" action="/change_clients" method="POST" class="modal-content">
 
 <table>
   <tr>
@@ -65,17 +66,18 @@ ul {
   </tr>
   {% for user in user_data%}
   <tr>
-    <td>{{user[0]}}</td>
-    <td>{{user[1]}}</td>
-    <td>{{user[2]}}</td>
-    <td>{{user[3]}}</td>
-    <td>{{user[4]}}</td>
-    <td>{{user[5]}}</td><button name ="email" value ="{{user[2]}}" type="submit" class="signupbtn"> Edit</button></td>
+    <td >{{user[0]}}</td>
+    <td >{{user[1]}}</td>
+    <td >{{user[2]}}</td>
+    <td >{{user[3]}}</td>
+    <td >{{user[4]}}</td>
+    <td>{{user[5]}}<button name ="edit" value="{{user[0]}}"  type="submit" class="signupbtn"> Edit</button></td>
 
 
   </tr>
 {%endfor%}
-</table>
 
+</table>
+</form>
 </body>
 </html>
