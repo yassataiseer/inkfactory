@@ -12,8 +12,8 @@ from generate import gather#gathers specific employees data
 import random
 from email_checker import find#checks if they email is Admins
 from db_rewriter import table_edit#rewrites employees data
-
 from clients_data_finder import search# gathers the data of the specific client
+from client_rewriter import client#rewrites to clients.db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
@@ -122,10 +122,27 @@ def change_clients():
         #print(name)
         user_data = search.data(name)
         for user in user_data:
-            print(user[0])
-        return render_template("change_client.html",user_data = user_data)
+            #print(user[0])
+            name = user[0]
+            print(name)
+        return render_template("change_client.html",user_data = user_data,name1=name)
     else:
         return"error"
+
+@app.route("/rewrite_client",methods = ['GET'])
+def client_rewrite():
+    if request.method=="GET":
+        name = request.args.get('name')
+        print(name)
+        address = request.args.get('Address')
+        sec_Address = request.args.get("sec_Address")
+        postal_code = request.args.get('postal_code')
+        email=request.args.get('email')
+        phone = request.args.get("phone")
+        client.clients_write(name,address,sec_Address,postal_code,email,phone)
+        user_data = static.data()#calls user_fetch.py class
+        return render_template("users.html", user_data=user_data)
+
 
 
 if __name__ == '__main__':
