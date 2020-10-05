@@ -21,9 +21,13 @@ app.config['SECRET_KEY'] = 'abc'
 
 @app.route("/")
 def index():
-    session['email'] = None
+    #session['email'] = None
     return render_template("login.html")
 
+@app.route("/")
+def new_client():
+    #session['email'] = None
+    return render_template("new_user.html")
 
 @app.route("/sign_out")
 def sign_out():
