@@ -14,7 +14,7 @@ from email_checker import find#checks if they email is Admins
 from db_rewriter import table_edit#rewrites employees data
 from clients_data_finder import search# gathers the data of the specific client
 from client_rewriter import client#rewrites to clients.db
-
+from clients_write import writer #this is the module that is used to write data into clients.db
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
 
@@ -24,7 +24,7 @@ def index():
     #session['email'] = None
     return render_template("login.html")
 
-@app.route("/")
+@app.route("/new_user")
 def new_client():
     #session['email'] = None
     return render_template("new_user.html")
@@ -147,6 +147,19 @@ def client_rewrite():
         user_data = static.data()#calls user_fetch.py class
         return render_template("users.html", user_data=user_data)
 
+@app.route("/new_client",methods = ['GET'])
+def client_add():
+    if request.method=="GET":
+        name = request.args.get('name')
+        #print(name)
+        address = request.args.get('Address')
+        sec_Address = request.args.get("sec_Address")
+        postal_code = request.args.get('postal_code')
+        email=request.args.get('email')
+        phone = request.args.get("phone")
+        writer.data_entry(name,address,sec_Address,postal_code,email,phone)
+        user_data = sheets.data()#calls cli_fetcher.py class
+        return render_template("clients.html", user_data=user_data)
 
 
 if __name__ == '__main__':
