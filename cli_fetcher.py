@@ -18,7 +18,7 @@ class sheets:
         for rows in data:
             send_data.append(rows)
         return( send_data)
-    def name_data():
+    def name_data():#gets name of person
         send_data=[]
         c.execute('SELECT name FROM stuffToPlot')
         data = c.fetchall()
@@ -30,4 +30,4 @@ class sheets:
 
 #a = sheets.data()
 #print(a[0])
-print(sheets.name_data())
+#print(sheets.name_data())
