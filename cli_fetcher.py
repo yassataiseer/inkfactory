@@ -18,5 +18,16 @@ class sheets:
         for rows in data:
             send_data.append(rows)
         return( send_data)
+    def name_data():
+        send_data=[]
+        c.execute('SELECT name FROM stuffToPlot')
+        data = c.fetchall()
+        #print(data)
+        send_data = []
+        for rows in data:
+            send_data.append(rows)
+        return( send_data)
 
-#print(static.data())
+#a = sheets.data()
+#print(a[0])
+print(sheets.name_data())
