@@ -15,6 +15,7 @@ from db_rewriter import table_edit#rewrites employees data
 from clients_data_finder import search# gathers the data of the specific client
 from client_rewriter import client#rewrites to clients.db
 from clients_write import writer #this is the module that is used to write data into clients.db
+from order_writer import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
 
@@ -160,6 +161,28 @@ def client_add():
         writer.data_entry(name,address,sec_Address,postal_code,email,phone)
         user_data = sheets.data()#calls cli_fetcher.py class
         return render_template("clients.html", user_data=user_data)
+
+@app.route("/order_builder",methods = ['GET'])
+def client_add():
+    if request.method=="GET":
+        ticket_number = request.args.get('ticket_number')
+        client = request.args.get('client')
+        employee = request.args.get("employee")
+        postal_code = request.args.get('postal_code')
+        email=request.args.get('email')
+        product = request.args.get("product")
+        model = request.args.get('model')
+        brand = request.args.get('brand')
+        serial_no = request.args.get('serial_no')
+        amount = request.args.get('amount')
+        status = request.args.get('status')
+        description = request.args.get('description')
+        comments = request.args.get("comments")
+        add_date = request.args.get("add_date")
+        up_date = request.args.get("up_date")
+        order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date))
+        user_data = sheets.data()#build class which generates data from orders.db
+        return render_template("clients.html", user_data=user_data)#change later to orders.html
 
 
 if __name__ == '__main__':
