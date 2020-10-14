@@ -1,23 +1,4 @@
-#Inkfactory project
-
-#echo "# inkfactory" >> README.md
-
-#git init
-
-#git add README.md
-
-#git commit -m "first commit"
-
-#git branch -M master
-
-#git remote add origin git@github.com:yassataiseer/inkfactory.git
-
-#git push -u origin master
-
-#----------------------------------------------------------------
-
-#git remote add origin git@github.com:yassataiseer/inkfactory.git
-
-#git branch -M master
-
-#git push -u origin master# inkfactory
+In order to install all dependencies see requirements.txt make sure pip is installed.
+For Mac and Linux it is 'pip3'. For clone simily use git clone https://github.com/yassataiseer/inkfactory.git
+This is a project for my dad's company called The Ink Factory which will allow him to create orders, manage clients,create new ones
+and track process on orders.
