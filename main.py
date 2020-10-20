@@ -16,6 +16,7 @@ from clients_data_finder import search# gathers the data of the specific client
 from client_rewriter import client#rewrites to clients.db
 from clients_write import writer #this is the module that is used to write data into clients.db
 from order_writer import *
+#from employee_builder import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
 
@@ -163,7 +164,7 @@ def client_add():
         return render_template("clients.html", user_data=user_data)
 
 @app.route("/order_builder",methods = ['GET'])
-def client_add():
+def client_adder():
     if request.method=="GET":
         ticket_number = request.args.get('ticket_number')
         client = request.args.get('client')
@@ -180,7 +181,7 @@ def client_add():
         comments = request.args.get("comments")
         add_date = request.args.get("add_date")
         up_date = request.args.get("up_date")
-        order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date))
+        order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
         user_data = sheets.data()#build class which generates data from orders.db
         return render_template("clients.html", user_data=user_data)#change later to orders.html
 
