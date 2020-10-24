@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+ul {
+    list-style-type: none;
+    margin: 5;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: unfixed;
+    top: 0;
+    width: 100%;
+  }
+
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+
+</style>
+</head>
+<body>
+  <ul>
+    <li><a href="/users" >View Users </a></li>
+    <li><a href="/clients">Clients</a></li>
+    <li><a href="/new_user">New User</a></li>
+    <li><a href="#">Orders</a></li>
+    <li><a href="#">New Orders</a></li>
+      <li><a href="/sign_out">Sign Out</a></li>
+  </ul>
+<h2>Internal Users List</h2>
+<form  name="orders" action="/orders" method="POST" class="modal-content">
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address1</th>
+    <th>Address2</th>
+    <th>Postalcode</th>
+    <th>Email</th>
+    <th>Phone</th>
+  </tr>
+  {% for user in user_data%}
+  <tr>
+    <td >{{user[0]}}</td>
+    <td >{{user[1]}}</td>
+    <td >{{user[2]}}</td>
+    <td >{{user[3]}}</td>
+    <td >{{user[4]}}</td>
+    <td>{{user[5]}}<button name ="edit" value="{{user[0]}}"  type="submit" class="signupbtn"> Edit</button></td>
+
+
+  </tr>
+{%endfor%}
+
+</table>
+</form>
+</body>
+</html>

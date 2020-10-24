@@ -183,7 +183,7 @@ def client_adder():
         up_date = request.args.get("up_date")
         order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
         user_data = sheets.data()#build class which generates data from orders.db
-        return render_template("clients.html", user_data=user_data)#change later to orders.html
+        return render_template("orders.html", user_data=user_data)#change later to orders.html
 
 
 if __name__ == '__main__':
