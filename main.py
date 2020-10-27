@@ -163,6 +163,15 @@ def client_add():
         user_data = sheets.data()#calls cli_fetcher.py class
         return render_template("clients.html", user_data=user_data)
 
+
+
+@app.route("/orders")
+def orders():
+    user_data = order_writer.data_fetcher()
+    print(user_data)
+    return render_template("orders.html",user_data=user_data)
+
+
 @app.route("/order_builder",methods = ['GET'])
 def client_adder():
     if request.method=="GET":
