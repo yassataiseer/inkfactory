@@ -23,6 +23,14 @@ class order_writer:##writes into orders.db
         for x in number :
             return int(x)+1
         
+    def not_done_orders():
+        package = []
+        cursor = c.execute("SELECT * FROM stuffToPlot")
+        orders = cursor.fetchall()
+        for i in orders:
+            package.append(i[9])
+        return package
+        
     def update_data(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date):
         c.execute("SELECT client FROM stuffToPlot")
         a = c.fetchall()
@@ -41,7 +49,6 @@ class order_writer:##writes into orders.db
                 comments_data = comments,client
                 add_date_data = add_date, client
                 up_date_data = up_date, client
-
                 c.execute('UPDATE stuffToPlot SET order_No = ?  WHERE client = ?;',ticket_data)
                 c.execute('UPDATE stuffToPlot SET Employee = ?  WHERE client = ?;',employee_data)
                 c.execute('UPDATE stuffToPlot SET product = ?  WHERE client = ?;',product_data)
@@ -62,3 +69,6 @@ class order_writer:##writes into orders.db
 
 #print(order_writer.data_fetcher())
 #print(order_writer.ticket_builder())
+
+a = order_writer.not_done_orders()
+print(a)

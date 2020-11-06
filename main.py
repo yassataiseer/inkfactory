@@ -192,7 +192,7 @@ def client_adder():
         brand = request.args.get('brand')
         serial_no = request.args.get('serial_no')
         amount = request.args.get('amount')
-        status = request.args.get('status')
+        status = request.args.get('Status')
         accessory = request.args.get('accessory')
         description = request.args.get('description')
         comments = request.args.get("comments")
