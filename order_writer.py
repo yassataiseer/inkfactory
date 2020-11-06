@@ -28,7 +28,10 @@ class order_writer:##writes into orders.db
         cursor = c.execute("SELECT * FROM stuffToPlot")
         orders = cursor.fetchall()
         for i in orders:
-            package.append(i[9])
+            if i[9]=="Completed":
+                pass
+            else:
+                package.append(i)
         return package
         
     def update_data(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date):
