@@ -203,5 +203,16 @@ def client_adder():
         return render_template("orders.html", user_data=user_data)#change later to orders.html
 
 
+@app.route("/change_order",methods = ['POST'] )
+def change_order():
+    if request.method=="POST":
+        order_No = request.form.get("edit")
+        user_data = order_writer.order_finder(order_No)
+        clients =  sheets.name_data()
+        users = static.data()
+        return render_template("edit_order.html",user_data = user_data, clients = clients, users = users)
+    else:
+        return"error"
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) 

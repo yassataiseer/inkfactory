@@ -33,7 +33,16 @@ class order_writer:##writes into orders.db
             else:
                 package.append(i)
         return package
-        
+    def order_finder(order_No):
+        send_data=[]
+        c.execute('SELECT * FROM stuffToPlot')
+        data = c.fetchall()
+        for rows in data:
+            if order_No==rows[0]:
+                send_data.append(rows)
+            else:
+                pass
+        return(send_data)
     def update_data(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date):
         c.execute("SELECT client FROM stuffToPlot")
         a = c.fetchall()
@@ -73,5 +82,9 @@ class order_writer:##writes into orders.db
 #print(order_writer.data_fetcher())
 #print(order_writer.ticket_builder())
 
-a = order_writer.not_done_orders()
-print(a)
+#a = order_writer.not_done_orders()
+#print(a)
+
+
+#a = order_writer.order_finder('4')
+#print(a)

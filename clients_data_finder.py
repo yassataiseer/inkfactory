@@ -20,4 +20,4 @@ class search:
                 pass
         return(send_data)
 
-#print(gather.data("Syed Atuer Ali"))
+#print(search.data("Syed Atuer Ali"))
