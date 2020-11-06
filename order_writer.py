@@ -16,6 +16,13 @@ class order_writer:##writes into orders.db
         cursor = c.execute("SELECT * FROM stuffToPlot")
         orders = cursor.fetchall()
         return orders
+    def ticket_builder():
+        cursor = c.execute("SELECT order_No FROM stuffToPlot")
+        number = cursor.fetchall()
+        number = number[0]
+        for x in number :
+            return int(x)+1
+        
     def update_data(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date):
         c.execute("SELECT client FROM stuffToPlot")
         a = c.fetchall()
@@ -54,3 +61,4 @@ class order_writer:##writes into orders.db
 #order_writer.update_data('00004','Yassa Taiseer','Taiseer Uddin Mohammed','Cellphone','iphone 69','apple','xxx','phone and charger','$30','pending','It is in red colour and needs new screen','give 10$ dicount','09-October-2015','09-October-2015')
 
 #print(order_writer.data_fetcher())
+#print(order_writer.ticket_builder())

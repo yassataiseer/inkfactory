@@ -171,6 +171,15 @@ def orders():
     print(user_data)
     return render_template("orders.html",user_data=user_data)
 
+@app.route("/new_orders")
+def new_orders():
+    clients =  sheets.name_data()
+    users = static.data()
+    ticket_place = order_writer.ticket_builder()
+    #print(clients)
+    #print(users)
+    return render_template("new_order.html",clients=clients,users=users,ticket_place=ticket_place)
+
 
 @app.route("/order_builder",methods = ['GET'])
 def client_adder():
@@ -178,18 +187,17 @@ def client_adder():
         ticket_number = request.args.get('ticket_number')
         client = request.args.get('client')
         employee = request.args.get("employee")
-        postal_code = request.args.get('postal_code')
-        email=request.args.get('email')
         product = request.args.get("product")
         model = request.args.get('model')
         brand = request.args.get('brand')
         serial_no = request.args.get('serial_no')
         amount = request.args.get('amount')
         status = request.args.get('status')
+        accessory = request.args.get('accessory')
         description = request.args.get('description')
         comments = request.args.get("comments")
         add_date = request.args.get("add_date")
-        up_date = request.args.get("up_date")
+        up_date = None
         order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
         user_data = sheets.data()#build class which generates data from orders.db
         return render_template("orders.html", user_data=user_data)#change later to orders.html

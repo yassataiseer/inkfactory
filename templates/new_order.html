@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+ul {
+    list-style-type: none;
+    margin: 5;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: unfixed;
+    top: 0;
+    width: 100%;
+  }
+
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+
+</style>
+</head>
+<body>
+
+<h3>New Order</h3>
+<ul>
+  <li><a href="/users" >View Users </a></li>
+  <li><a href="/clients">Clients</a></li>
+  <li><a href="/new_user">New User</a></li>
+  <li><a href="/orders">Orders</a></li>
+  <li><a href="/new_orders">New Orders</a></li>
+    <li><a href="/sign_out">Sign Out</a></li>
+</ul>
+<form  name="order_builder" action="/order_builder" method="GET" class="modal-content">
+
+    <div class="container" >
+
+    <label for="ticket_number">Order No.</label>
+    
+    <input type="text" id="ticket_number" name="ticket_number" placeholder="{{ticket_place}}" value="{{ticket_place}}"required>
+
+    <label for="client">Customer</label>
+    <select name="client" id="client">
+      {% for client in clients%}
+      <option value={{client[0]}}>{{client[0]}}</option>
+      {%endfor%}
+    </select>
+
+    <label for="employee">Employee</label>
+    <select name="employee" id="employee">
+      {% for user in users%}
+      <option value={{user[0]}}>{{user[0]}}</option>
+      {%endfor%}
+    </select>
+
+    <label for="product">Product</label>
+    <input type="text" id="product" name="product" placeholder="product" value="product" required>
+
+    <label for="model">Model</label>
+    <input type="text" id="model" name="model" placeholder="model" value="model" required> 
+
+    <label for="brand">Brand</label>
+    <input type="brand" id="brand" name="brand" placeholder="brand" value="brand"required> 
+
+    <label for="serial_no">Serial Number</label>
+    <input type="text" id="serial_no" name="serial_no" placeholder="serial_no" value="serial_no"required> 
+
+    <label for="amount">Amount</label>
+    <input type="text" id="amount" name="amount" placeholder="amount" value="amount"required>  
+
+    <label for="Status">Status</label>
+    <select name="Status" id="Status">
+      <option value=Lodged>Lodged</option>
+      <option value=In-Progress>In-Progress</option>
+      <option value=Completed>Completed</option>
+    </select> 
+
+    <label for="accessory">Accessory</label>
+    <input type="text" id="accessory" name="accessory" placeholder="accessory" value="accessory"required>     
+    
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" placeholder="description" value="description"required>   
+
+    <label for="comments">Comments</label>
+    <input type="text" id="comments" name="comments" placeholder="comments" value="comments"required>   
+
+    <label for="add_date">Date:</label>
+    <input type="date" id="add_date" name="add_date" required>
+  <br>
+  <br>
+  <br>
+
+  <button type="submit" class="signupbtn"> Submit</button></td>
+</form>
+
+</div>
+</body>
+</html>
+
+
+<!--Make classes to get employer and client data -->

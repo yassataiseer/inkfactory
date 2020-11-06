@@ -20,3 +20,6 @@ class static:
         return( send_data)
 
 #print(static.data())
+#a = static.data()
+#for i in a:
+#    print(i[0])
