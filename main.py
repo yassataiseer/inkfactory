@@ -207,10 +207,10 @@ def client_adder():
 def change_order():
     if request.method=="POST":
         order_No = request.form.get("edit")
-        user_data = order_writer.order_finder(order_No)
+        order_data = order_writer.order_finder(order_No)
         clients =  sheets.name_data()
         users = static.data()
-        return render_template("edit_order.html",user_data = user_data, clients = clients, users = users)
+        return render_template("edit_order.html",order_data = order_data, clients = clients, users = users)
     else:
         return"error"
 
