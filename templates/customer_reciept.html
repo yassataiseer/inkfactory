@@ -49,46 +49,76 @@ ul {
 
 <h2>Order Review Reciept</h2>
 <form  name="change_order" action="/change_order" method="POST" class="modal-content">
+{% for user in order_data%}
 
 <table>
   <tr>
     <th>Order_no</th>
-    <th>Client</th>
-    <th>Employee</th>
-    <th>Product</th>
-    <th>Model</th>
-    <th>Brand</th>
-    <th>Serial No.</th>
-    <th>Accessory</th>
-    <th>Amount</th>
-    <th>Status</th>
-    <th>Description</th>
-    <th>Comments</th>
-    <th>Add Date</th>
-    <th>Up Date</th>
-  </tr>
-  {% for user in order_data%}
-  <tr>
     <td >{{user[0]}}</td>
+  </tr>
+  <tr>
+    <th>Client</th>
     <td >{{user[1]}}</td>
-    <td >{{user[2]}}</td>
-    <td >{{user[3]}}</td>
-    <td >{{user[4]}}</td>
-    <td >{{user[5]}}</td>
-    <td >{{user[6]}}</td>
-    <td >{{user[7]}}</td>
-    <td >{{user[8]}}</td>
-    <td >{{user[9]}}</td>
-    <td >{{user[10]}}</td>
-    <td >{{user[11]}}</td>
-    <td >{{user[12]}}</td>
-    <td>{{user[13]}}</td>
-
 
   </tr>
+<tr>
+  <th>Employee</th>
+  <td >{{user[2]}}</td>
+</tr>
+
+<tr>
+  <th>Product</th>
+  <td >{{user[3]}}</td>
+</tr>
+
+<tr>
+  <th>Model</th>
+  <td >{{user[4]}}</td>
+</tr>
+
+<tr>
+  <th>Brand</th>
+  <td >{{user[5]}}</td>
+</tr>
+
+<tr>
+  <th>Accessory</th>
+  <td >{{user[7]}}</td>
+</tr>
+
+<tr>
+  <th>Amount</th>
+  <td >{{user[8]}}</td>
+</tr>
+
+<tr>
+  <th>Status</th>
+  <td >{{user[9]}}</td>
+</tr>
+
+<tr>
+  <th>Description</th>
+  <td >{{user[10]}}</td>
+</tr>
+
+<tr>
+  <th>Comments</th>
+  <td >{{user[11]}}</td>
+</tr>
+
+<tr>
+  <th>Add Date</th>
+  <td >{{user[12]}}</td>
+</tr>
+
+<tr>
+  <th>Up Date</th>
+  <td >{{user[13]}}</td>
+</tr>
 {%endfor%}
 
 </table>
+<p style="text-align:center"><h6>Ink Factory LLC</h6></p>
 </form>
 </body>
 </html>
