@@ -9,7 +9,7 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid #bbbbbb;
   text-align: left;
   padding: 8px;
 }
@@ -46,16 +46,8 @@ ul {
 
 </style>
 </head>
-<body>
-  <ul>
-    <li><a href="/users" >View Users </a></li>
-    <li><a href="/clients">Clients</a></li>
-    <li><a href="/new_user">New User</a></li>
-    <li><a href="/orders">Orders</a></li>
-    <li><a href="/new_orders">New Orders</a></li>
-      <li><a href="/sign_out">Sign Out</a></li>
-  </ul>
-<h2>Internal Users List</h2>
+
+<h2>Order Review Reciept</h2>
 <form  name="change_order" action="/change_order" method="POST" class="modal-content">
 
 <table>
@@ -90,7 +82,7 @@ ul {
     <td >{{user[10]}}</td>
     <td >{{user[11]}}</td>
     <td >{{user[12]}}</td>
-    <td>{{user[13]}}<button name ="edit" value="{{user[0]}}"  type="submit" class="signupbtn"> Edit</button></td>
+    <td>{{user[13]}}</td>
 
 
   </tr>

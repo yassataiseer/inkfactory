@@ -18,7 +18,8 @@ from clients_write import writer #this is the module that is used to write data 
 from order_writer import *
 #from employee_builder import *
 from flask import make_response
-from flask import render_template
+from flask import render_template,send_file
+import pdfkit
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
 
@@ -234,10 +235,21 @@ def change_order():
             order_data = order_writer.order_finder(order_No)
             clients =  sheets.name_data()
             users = static.data()
-            print(order_data)
+            print(order_No)
             return render_template("edit_order.html",order_data = order_data, clients = clients, users = users)
         else:
-            return render_template("users.html")
+            order_No = request.form.get("print")
+            order_data = order_writer.order_finder(order_No)
+            print(order_No)
+            hello = "wassup"
+            html = render_template("customer_reciept.html",order_data=order_data,hello = hello)
+            config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+            #pdf = pdfkit.from_string(html, 'output.pdf',configuration=config)
+            pdf = pdfkit.from_string(html, False, configuration=config)
+            response = make_response(pdf)
+            response.headers["Content-Type"] = "application/pdf"
+            response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+            return response
 
 
 
