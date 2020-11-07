@@ -202,6 +202,27 @@ def client_adder():
         user_data = sheets.data()#build class which generates data from orders.db
         return render_template("orders.html", user_data=user_data)#change later to orders.html
 
+@app.route("/order_rebuilder",methods = ['GET'])
+def order_rebuilder():
+    if request.method=="GET":
+        ticket_number = request.args.get('ticket_number')
+        client = request.args.get('client')
+        employee = request.args.get("employee")
+        product = request.args.get("product")
+        model = request.args.get('model')
+        brand = request.args.get('brand')
+        serial_no = request.args.get('serial_no')
+        amount = request.args.get('amount')
+        status = request.args.get('Status')
+        accessory = request.args.get('accessory')
+        description = request.args.get('description')
+        comments = request.args.get("comments")
+        add_date = None
+        up_date = request.args.get("up_date")
+        order_writer.update_data(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
+        user_data = sheets.data()#build class which generates data from orders.db
+        return render_template("orders.html", user_data=user_data)
+
 
 @app.route("/change_order",methods = ['POST'] )
 def change_order():

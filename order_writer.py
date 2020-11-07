@@ -59,7 +59,6 @@ class order_writer:##writes into orders.db
                 status_data = status,client
                 description_data = description,client
                 comments_data = comments,client
-                add_date_data = add_date, client
                 up_date_data = up_date, client
                 c.execute('UPDATE stuffToPlot SET order_No = ?  WHERE client = ?;',ticket_data)
                 c.execute('UPDATE stuffToPlot SET Employee = ?  WHERE client = ?;',employee_data)
@@ -72,7 +71,6 @@ class order_writer:##writes into orders.db
                 c.execute('UPDATE stuffToPlot SET Status = ?  WHERE client = ?;',status_data)
                 c.execute('UPDATE stuffToPlot SET Description = ?  WHERE client = ?;',description_data)
                 c.execute('UPDATE stuffToPlot SET Comments = ?  WHERE client = ?;',comments_data)
-                c.execute('UPDATE stuffToPlot SET add_data = ?  WHERE client = ?;',add_date_data)
                 c.execute('UPDATE stuffToPlot SET Up_date = ?  WHERE client = ?;',up_date_data)
                 
                 conn.commit()
