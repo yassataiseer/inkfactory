@@ -19,7 +19,7 @@ class order_writer:##writes into orders.db
     def ticket_builder():
         cursor = c.execute("SELECT order_No FROM stuffToPlot")
         number = cursor.fetchall()
-        number = number[0]
+        number = number[-1]
         for x in number :
             return int(x)+1
         
@@ -53,7 +53,7 @@ class order_writer:##writes into orders.db
                 product_data = product,client
                 model_data = model, client
                 brand_data = brand, client
-                serial_no = serial_no, client
+                serial_no_data = serial_no, client
                 accessory_data = accessory, client
                 amount_data = amount,client 
                 status_data = status,client
@@ -65,7 +65,7 @@ class order_writer:##writes into orders.db
                 c.execute('UPDATE stuffToPlot SET product = ?  WHERE client = ?;',product_data)
                 c.execute('UPDATE stuffToPlot SET model = ?  WHERE client = ?;',model_data)
                 c.execute('UPDATE stuffToPlot SET brand = ?  WHERE client = ?;',brand_data)
-                c.execute('UPDATE stuffToPlot SET serial_no = ?  WHERE client = ?;',serial_no)
+                c.execute('UPDATE stuffToPlot SET serial_no = ?  WHERE client = ?;',serial_no_data)
                 c.execute('UPDATE stuffToPlot SET Accessory = ?  WHERE client = ?;',accessory_data)
                 c.execute('UPDATE stuffToPlot SET Amount = ?  WHERE client = ?;',amount_data)
                 c.execute('UPDATE stuffToPlot SET Status = ?  WHERE client = ?;',status_data)
