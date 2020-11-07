@@ -17,6 +17,8 @@ from client_rewriter import client#rewrites to clients.db
 from clients_write import writer #this is the module that is used to write data into clients.db
 from order_writer import *
 #from employee_builder import *
+from flask import make_response
+from flask import render_template
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'abc'
 
@@ -227,13 +229,17 @@ def order_rebuilder():
 @app.route("/change_order",methods = ['POST'] )
 def change_order():
     if request.method=="POST":
-        order_No = request.form.get("edit")
-        order_data = order_writer.order_finder(order_No)
-        clients =  sheets.name_data()
-        users = static.data()
-        return render_template("edit_order.html",order_data = order_data, clients = clients, users = users)
-    else:
-        return"error"
+        if request.form.get("edit"):
+            order_No = request.form.get("edit")
+            order_data = order_writer.order_finder(order_No)
+            clients =  sheets.name_data()
+            users = static.data()
+            print(order_data)
+            return render_template("edit_order.html",order_data = order_data, clients = clients, users = users)
+        else:
+            return render_template("users.html")
+
+
 
 if __name__ == '__main__':
     app.run(debug=True) 
