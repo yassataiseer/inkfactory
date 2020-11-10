@@ -1,9 +1,11 @@
+'''
+Rewrites employees.db data for example if you need to change worker's passwords this is where you would do it
+'''
 
 import sqlite3
 
 conn = sqlite3.connect('employees.db',  check_same_thread=False)
 c = conn.cursor()
-
 
 class table_edit:
 
