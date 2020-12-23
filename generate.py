@@ -11,7 +11,6 @@ c = conn.cursor()
 class gather:
     def data(email):
         send_data=[]
-        
         c.execute('SELECT * FROM stuffToPlot')
         data = c.fetchall()
         for rows in data:
@@ -21,4 +20,4 @@ class gather:
                 pass
         return(send_data)
 
-#print(gather.data("--"))
+#print(gather.data("taiseer142@hotmail.com"))
