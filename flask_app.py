@@ -55,7 +55,7 @@ def check():
         else:
             return render_template("users.html",user_data=[["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["Your account does not have access"],["#"]])
     else:
-        return "invalid creds"
+        return "invalid credentials"
 
 
 
