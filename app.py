@@ -243,7 +243,7 @@ def change_order():
             hello = "wassup"
             html = render_template("customer_reciept.html",order_data=order_data,hello = hello)
             #config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
-            config = pdfkit.configuration(wkhtmltopdf="/opt/bin//wkhtmltopdf")
+            config = pdfkit.configuration(wkhtmltopdf="/opt/bin/wkhtmltopdf")
             #pdf = pdfkit.from_string(html, 'output.pdf',configuration=config)
             pdf = pdfkit.from_string(html, False, configuration=config)
             response = make_response(pdf)
