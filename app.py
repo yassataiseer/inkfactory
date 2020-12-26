@@ -2,7 +2,7 @@ from flask import Flask, render_template,request,session
 import json
 import urllib.request
 #from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
+#from flask_migrate import Migrate, MigrateCommand
 import os
 from query import data_answer
 from user_fetcher import static#grabs data of all users to be displayed on  users.html
