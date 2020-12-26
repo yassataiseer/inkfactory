@@ -201,7 +201,7 @@ def client_adder():
         add_date = request.args.get("add_date")
         up_date = None
         order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
-        user_data = sheets.data()#build class which generates data from orders.db
+        user_data = order_writer.data_fetcher()#build class which generates data from orders.db
         return render_template("orders.html", user_data=user_data)#change later to orders.html
 
 @app.route("/order_rebuilder",methods = ['GET'])
