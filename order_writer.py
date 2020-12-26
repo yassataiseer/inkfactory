@@ -44,38 +44,40 @@ class order_writer:##writes into orders.db
                 pass
         return(send_data)
     def update_data(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date):
-        c.execute("SELECT client FROM stuffToPlot")
+        c.execute("SELECT order_No FROM stuffToPlot")
         a = c.fetchall()
         for row in a:
-            if row[0]==client:
-                ticket_data = ticket_number,client
-                employee_data = employee, client
-                product_data = product,client
-                model_data = model, client
-                brand_data = brand, client
-                serial_no_data = serial_no, client
-                accessory_data = accessory, client
-                amount_data = amount,client 
-                status_data = status,client
-                description_data = description,client
-                comments_data = comments,client
-                up_date_data = up_date, client
-                c.execute('UPDATE stuffToPlot SET order_No = ?  WHERE client = ?;',ticket_data)
-                c.execute('UPDATE stuffToPlot SET Employee = ?  WHERE client = ?;',employee_data)
-                c.execute('UPDATE stuffToPlot SET product = ?  WHERE client = ?;',product_data)
-                c.execute('UPDATE stuffToPlot SET model = ?  WHERE client = ?;',model_data)
-                c.execute('UPDATE stuffToPlot SET brand = ?  WHERE client = ?;',brand_data)
-                c.execute('UPDATE stuffToPlot SET serial_no = ?  WHERE client = ?;',serial_no_data)
-                c.execute('UPDATE stuffToPlot SET Accessory = ?  WHERE client = ?;',accessory_data)
-                c.execute('UPDATE stuffToPlot SET Amount = ?  WHERE client = ?;',amount_data)
-                c.execute('UPDATE stuffToPlot SET Status = ?  WHERE client = ?;',status_data)
-                c.execute('UPDATE stuffToPlot SET Description = ?  WHERE client = ?;',description_data)
-                c.execute('UPDATE stuffToPlot SET Comments = ?  WHERE client = ?;',comments_data)
-                c.execute('UPDATE stuffToPlot SET Up_date = ?  WHERE client = ?;',up_date_data)
+            
+            if row[0]==ticket_number:
+                clien_data = client,ticket_number
+                employee_data = employee, ticket_number
+                product_data = product,ticket_number
+                model_data = model, ticket_number
+                brand_data = brand, ticket_number
+                serial_no_data = serial_no, ticket_number
+                accessory_data = accessory, ticket_number
+                amount_data = amount,ticket_number 
+                status_data = status,ticket_number
+                description_data = description,ticket_number
+                comments_data = comments,ticket_number
+                up_date_data = up_date, ticket_number
+                #c.execute('UPDATE stuffToPlot SET order_No = ?  WHERE client = ?;',ticket_data)
+                c.execute('UPDATE stuffToPlot SET client = ?  WHERE order_No = ?;',clien_data)
+                c.execute('UPDATE stuffToPlot SET Employee = ?  WHERE order_No = ?;',employee_data)
+                c.execute('UPDATE stuffToPlot SET product = ?  WHERE order_No = ?;',product_data)
+                c.execute('UPDATE stuffToPlot SET model = ?  WHERE order_No = ?;',model_data)
+                c.execute('UPDATE stuffToPlot SET brand = ?  WHERE order_No = ?;',brand_data)
+                c.execute('UPDATE stuffToPlot SET serial_no = ?  WHERE order_No = ?;',serial_no_data)
+                c.execute('UPDATE stuffToPlot SET Accessory = ?  WHERE order_No = ?;',accessory_data)
+                c.execute('UPDATE stuffToPlot SET Amount = ?  WHERE order_No = ?;',amount_data)
+                c.execute('UPDATE stuffToPlot SET Status = ?  WHERE order_No = ?;',status_data)
+                c.execute('UPDATE stuffToPlot SET Description = ?  WHERE order_No = ?;',description_data)
+                c.execute('UPDATE stuffToPlot SET Comments = ?  WHERE order_No = ?;',comments_data)
+                c.execute('UPDATE stuffToPlot SET Up_date = ?  WHERE order_No = ?;',up_date_data)
                 
                 conn.commit()
 
-#order_writer.update_data('00004','Yassa Taiseer','Taiseer Uddin Mohammed','Cellphone','iphone 69','apple','xxx','phone and charger','$30','pending','It is in red colour and needs new screen','give 10$ dicount','09-October-2015','09-October-2015')
+order_writer.update_data('1','Yassa Taiseer','Taiseer Uddin Mohammed','Cellphone','iphone 69','apple','xxx','phone and charger','$30','pending','It is in red colour and needs new screen','give 10$ dicount','09-October-2015','09-October-2015')
 
 #print(order_writer.data_fetcher())
 #print(order_writer.ticket_builder())

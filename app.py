@@ -183,26 +183,26 @@ def new_orders():
     return render_template("new_order.html",clients=clients,users=users,ticket_place=ticket_place)
 
 
-@app.route("/order_builder",methods = ['GET'])
+@app.route("/order_builder",methods = ['POST'])
 def client_adder():
-    if request.method=="GET":
-        ticket_number = request.args.get('ticket_number')
-        client = request.args.get('client')
-        employee = request.args.get("employee")
-        product = request.args.get("product")
-        model = request.args.get('model')
-        brand = request.args.get('brand')
-        serial_no = request.args.get('serial_no')
-        amount = request.args.get('amount')
-        status = request.args.get('Status')
-        accessory = request.args.get('accessory')
-        description = request.args.get('description')
-        comments = request.args.get("comments")
-        add_date = request.args.get("add_date")
-        up_date = None
-        order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
-        user_data = order_writer.data_fetcher()#build class which generates data from orders.db
-        return render_template("orders.html", user_data=user_data)#change later to orders.html
+    ticket_number = request.form['ticket_number']
+    client = request.form['client']
+    print("CLIENTS IS "+ client)
+    employee = request.form["employee"]
+    product = request.form["product"]
+    model = request.form['model']
+    brand = request.form['brand']
+    serial_no = request.form['serial_no']
+    amount = request.form['amount']
+    status = request.form['Status']
+    accessory = request.form['accessory']
+    description = request.form['description']
+    comments = request.form["comments"]
+    add_date = request.form["add_date"]
+    up_date = None
+    order_writer.data_entry(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
+    user_data = order_writer.data_fetcher()#build class which generates data from orders.db
+    return render_template("orders.html", user_data=user_data)#change later to orders.html
 
 @app.route("/order_rebuilder",methods = ['GET'])
 def order_rebuilder():
@@ -222,7 +222,8 @@ def order_rebuilder():
         add_date = None
         up_date = request.args.get("up_date")
         order_writer.update_data(ticket_number,client,employee,product,model,brand,serial_no,accessory,amount,status,description,comments,add_date,up_date)
-        user_data = sheets.data()#build class which generates data from orders.db
+        print(brand)
+        user_data = order_writer.data_fetcher()#build class which generates data from orders.db
         return render_template("orders.html", user_data=user_data)
 
 
@@ -234,12 +235,10 @@ def change_order():
             order_data = order_writer.order_finder(order_No)
             clients =  sheets.name_data()
             users = static.data()
-            print(order_No)
             return render_template("edit_order.html",order_data = order_data, clients = clients, users = users)
         else:
             order_No = request.form.get("print")
             order_data = order_writer.order_finder(order_No)
-            print(order_No)
             hello = "wassup"
             html = render_template("customer_reciept.html",order_data=order_data,hello = hello)
             config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")

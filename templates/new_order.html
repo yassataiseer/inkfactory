@@ -84,7 +84,7 @@ ul {
   <li><a href="/new_orders">New Orders</a></li>
     <li><a href="/sign_out">Sign Out</a></li>
 </ul>
-<form  name="order_builder" action="/order_builder" method="GET" class="modal-content">
+<form  name="order_builder" action="/order_builder" method="POST" class="modal-content">
 
     <div class="container" >
 
@@ -135,7 +135,7 @@ ul {
     <input type="text" id="description" name="description" placeholder="description" value="description"required>   
 
     <label for="comments">Comments</label>
-    <input type="text" id="comments" name="comments" placeholder="comments" value="comments"required>   
+    <textarea id="comments" name="comments" placeholder="comments" value="comments"required>   </textarea>
 
     <label for="add_date">Date:</label>
     <input type="date" id="add_date" name="add_date" required>
