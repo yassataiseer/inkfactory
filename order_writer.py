@@ -77,7 +77,7 @@ class order_writer:##writes into orders.db
                 
                 conn.commit()
 
-order_writer.update_data('1','Yassa Taiseer','Taiseer Uddin Mohammed','Cellphone','iphone 69','apple','xxx','phone and charger','$30','pending','It is in red colour and needs new screen','give 10$ dicount','09-October-2015','09-October-2015')
+#order_writer.update_data('1','Yassa Taiseer','Taiseer Uddin Mohammed','Cellphone','iphone 69','apple','xxx','phone and charger','$30','pending','It is in red colour and needs new screen','give 10$ dicount','09-October-2015','09-October-2015')
 
 #print(order_writer.data_fetcher())
 #print(order_writer.ticket_builder())
