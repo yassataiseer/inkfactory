@@ -5,7 +5,7 @@
 ##### -In order to install all dependencies see 'requirements.txt' make sure pip is installed.
 ##### -For Mac and Linux it is 'pip3'. For clone simily use git clone https://github.com/yassataiseer/inkfactory.git
 
-#### This project was made with the Flask Web Framework and Python
+#### This project was made with the Flask Web Framework and Python Can be found here https://inkfactory.herokuapp.com/
 
 
 ### Setup Files:
